@@ -28,7 +28,7 @@ class App extends React.Component {
         <main className='container max-screen-xl mx-auto'>
           <SearchBar onFormSubmit={this.onTermSubmit}/>
 
-          <div className='md:flex md:justify-between m-4 mt-8'>
+          <div className='lg:flex lg:justify-between m-4 mt-8'>
             <VideoDetails />
             <VideosList videos={this.state.videos} />
           </div>
