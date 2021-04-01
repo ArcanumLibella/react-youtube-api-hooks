@@ -29,7 +29,7 @@ class App extends React.Component {
 
           <div className='md:flex md:justify-between m-4 mt-8'>
             <VideoDetails />
-            <VideosList />
+            <VideosList videos={this.state.videos} />
           </div>
         </main>
       </div>
