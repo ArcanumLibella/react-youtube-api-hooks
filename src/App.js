@@ -26,12 +26,10 @@ class App extends React.Component {
         <Header />
         <main className='container max-screen-xl mx-auto'>
           <SearchBar onFormSubmit={this.onTermSubmit}/>
-          <h2>I have {this.state.videos.length} video(s) !</h2>
+
           <div className='md:flex md:justify-between m-4 mt-8'>
             <VideoDetails />
-            <aside className='videosList md:flex md:flex-grow-1 mt-8 md:mt-0 p-4 bg-blue-50 rounded-xl'>
-              <VideosList />
-            </aside>
+            <VideosList />
           </div>
         </main>
       </div>
