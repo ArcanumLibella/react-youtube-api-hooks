@@ -6,7 +6,7 @@ const VideoDetails = ({video}) => {
         return (
             <div className='videoDetail flex flex-col lg:flex-grow-2 items-start md:flex-grow p-4 rounded-xl bg-blue-50'>
                 <h3 className='font-bold uppercase text-center mb-4'>Video Details</h3>
-                <h4 className='font-bold text-left mb-4'>No selected video</h4>
+                <h4 className='font-bold text-left mb-4'>Loading...</h4>
             </div>
             )
     } else {
