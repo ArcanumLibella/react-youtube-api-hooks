@@ -8,7 +8,7 @@ import VideosList from './components/VideosList'
 import VideoDetails from './components/VideoDetails'
 
 class App extends React.Component {
-  state = { videos: [] }
+  state = { videos: [], selectedVideo: null }
 
   onTermSubmit = async term => {
     const response = await youtube.get('/search', {
@@ -21,6 +21,10 @@ class App extends React.Component {
     console.log(this.state.videos)
   }
 
+  onVideoSelect = (video) => {
+    this.setState({ selectedVideo: video })
+  }
+
   render () {
     return (
       <div className='App'>
@@ -29,8 +33,8 @@ class App extends React.Component {
           <SearchBar onFormSubmit={this.onTermSubmit}/>
 
           <div className='lg:flex lg:justify-between m-4 mt-8'>
-            <VideoDetails />
-            <VideosList videos={this.state.videos} />
+            <VideoDetails video={this.state.selectedVideo} />
+            <VideosList videos={this.state.videos} onVideoSelect={this.onVideoSelect} />
           </div>
         </main>
       </div>
