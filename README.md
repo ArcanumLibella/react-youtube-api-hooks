@@ -1,6 +1,5 @@
 # 🎥 The Video Finder
-## A little app created with React to get videos from Youtube
-👀 : https://arcanumlibella.github.io/react-youtube-api
+## A little app created with React and Hooks system to get videos from Youtube
 
 ## Getting Started with Create React App
 
