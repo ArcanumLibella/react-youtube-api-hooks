@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './App.css'
 import youtube from './api/youtube'
 
@@ -7,46 +7,41 @@ import Header from './components/Header'
 import VideosList from './components/VideosList'
 import VideoDetails from './components/VideoDetails'
 
-class App extends React.Component {
-  state = { videos: [], selectedVideo: null }
-
-  componentDidMount() {
-    this.onTermSubmit('Anax imperator')
-  }
-
-  onTermSubmit = async term => {
+export default function App() {
+  const [videos, setVideos] = useState([])
+  const [selectedVideo, setSelectedVideo] = useState(null)
+  
+  const onTermSubmit = async (term) => {
     const response = await youtube.get('/search', {
       params: {
         q: term
-      }
+      } 
     })
 
-    this.setState({ 
-      videos: response.data.items,
-      selectedVideo: response.data.items[0] 
-    })
-    console.log(this.state.videos)
+    setVideos(response.data.items)
+    setSelectedVideo(response.data.items[0])
+    console.log(`videos : `, videos)
   }
 
-  onVideoSelect = (video) => {
-    this.setState({ selectedVideo: video })
+  useEffect(() => {
+    onTermSubmit('Anax imperator')
+  }, [])
+
+  const onVideoSelect = (video) => {
+    setSelectedVideo(video)
   }
 
-  render () {
-    return (
-      <div className='App'>
-        <Header />
-        <main className='container max-screen-xl mx-auto'>
-          <SearchBar onFormSubmit={this.onTermSubmit}/>
+  return (
+    <div className='App'>
+      <Header />
+      <main className='container max-screen-xl mx-auto'>
+        <SearchBar onFormSubmit={onTermSubmit}/>
 
-          <div className='lg:flex lg:justify-between m-4 mt-8'>
-            <VideoDetails video={this.state.selectedVideo} />
-            <VideosList videos={this.state.videos} onVideoSelect={this.onVideoSelect} />
-          </div>
-        </main>
-      </div>
-    )
-  }
+        <div className='lg:flex lg:justify-between m-4 mt-8'>
+          <VideoDetails video={selectedVideo} />
+          <VideosList videos={videos} onVideoSelect={onVideoSelect} />
+        </div>
+      </main>
+    </div>
+  )
 }
-
-export default App
