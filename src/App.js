@@ -27,10 +27,6 @@ export default function App() {
     onTermSubmit('Anax imperator')
   }, [])
 
-  const onVideoSelect = (video) => {
-    setSelectedVideo(video)
-  }
-
   return (
     <div className='App'>
       <Header />
@@ -39,7 +35,7 @@ export default function App() {
 
         <div className='lg:flex lg:justify-between m-4 mt-8'>
           <VideoDetails video={selectedVideo} />
-          <VideosList videos={videos} onVideoSelect={onVideoSelect} />
+          <VideosList videos={videos} onVideoSelect={setSelectedVideo} />
         </div>
       </main>
     </div>
